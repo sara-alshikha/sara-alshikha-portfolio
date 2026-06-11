@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SectionHeading, GoldButton, LinkedinIcon } from '../components/ui';
+import { FilePreviewModal } from '../components/ui/FilePreviewModal';
 import { ScrollReveal } from '../components/ui/animations';
 import { personalInfo } from '../data/personalInfo';
 import { Mail, Phone, MapPin, Download, CheckCircle, AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
@@ -9,8 +10,10 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
   const { language, t } = useLanguage();
   const isArabic = language === 'ar';
+  const cvUrl = "https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link";
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -150,16 +153,22 @@ const Contact = () => {
               </div>
 
               <div className="pt-8 border-t border-white/5">
-                <a href="https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group ${isArabic ? 'flex-row-reverse w-fit' : ''}`}>
+                <button onClick={() => setCvModalOpen(true)} className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group ${isArabic ? 'flex-row-reverse w-fit' : ''}`}>
                   <Download size={16} />
                   <span className={isArabic ? 'font-cairo font-medium' : ''}>{t('contact.downloadFull')}</span>
                   {isArabic ? <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> : <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />}
-                </a>
+                </button>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
+
+      <FilePreviewModal 
+        isOpen={cvModalOpen} 
+        url={cvUrl} 
+        onClose={() => setCvModalOpen(false)} 
+      />
     </div>
   );
 };

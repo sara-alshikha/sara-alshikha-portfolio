@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { SectionHeading, GoldButton } from '../components/ui';
 import { CareerTimeline } from '../components/sections/CareerTimeline';
 import { AnimatedCounter, ScrollReveal } from '../components/ui/animations';
+import { FilePreviewModal } from '../components/ui/FilePreviewModal';
 import { achievements } from '../data/achievements';
 import { Download, Camera, Award, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,6 +11,8 @@ import { useLanguage } from '../context/LanguageContext';
 const About = () => {
   const { language, t } = useLanguage();
   const isArabic = language === 'ar';
+  const [cvModalOpen, setCvModalOpen] = React.useState(false);
+  const cvUrl = "https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link";
 
   return (
     <div dir={isArabic ? 'rtl' : 'ltr'}>
@@ -142,15 +145,21 @@ const About = () => {
                 <p className={`text-white/80 leading-relaxed mb-8 flex-grow font-inter`}>
                   {t('about.resume_text')}
                 </p>
-                <a href="https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group w-fit ${isArabic ? 'flex-row-reverse' : ''}`}>
+                <button onClick={() => setCvModalOpen(true)} className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group w-fit ${isArabic ? 'flex-row-reverse' : ''}`}>
                   {t('btn.downloadCV')} 
                   {isArabic ? <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> : <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />}
-                </a>
+                </button>
               </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
+
+      <FilePreviewModal 
+        isOpen={cvModalOpen} 
+        url={cvUrl} 
+        onClose={() => setCvModalOpen(false)} 
+      />
     </div>
   );
 };
