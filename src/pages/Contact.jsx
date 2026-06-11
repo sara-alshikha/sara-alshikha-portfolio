@@ -150,7 +150,7 @@ const Contact = () => {
               </div>
 
               <div className="pt-8 border-t border-white/5">
-                <a href="#" className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group ${isArabic ? 'flex-row-reverse w-fit' : ''}`}>
+                <a href="https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-white text-sm tracking-[0.15em] uppercase hover:text-gold transition-colors group ${isArabic ? 'flex-row-reverse w-fit' : ''}`}>
                   <Download size={16} />
                   <span className={isArabic ? 'font-cairo font-medium' : ''}>{t('contact.downloadFull')}</span>
                   {isArabic ? <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> : <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />}
