@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cairo:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DecoType Thuluth';
+  src: url('/fonts/DTHULUTH.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply bg-navy text-white font-inter antialiased overflow-x-hidden;
+    cursor: none;
+    /* Hide native cursor for magic custom cursor */
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    cursor: none;
+  }
+
+  ::selection {
+    background-color: #D4AF37;
+    color: #050B14;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-playfair;
+  }
+
+  /* Arabic Global Font Overrides */
+  html[lang="ar"] body,
+  html.lang-ar body,
+  html[lang="ar"] .font-inter,
+  html.lang-ar .font-inter,
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3,
+  html[lang="ar"] h4,
+  html[lang="ar"] h5,
+  html[lang="ar"] h6,
+  html.lang-ar h1,
+  html.lang-ar h2,
+  html.lang-ar h3,
+  html.lang-ar h4,
+  html.lang-ar h5,
+  html.lang-ar h6,
+  html[lang="ar"] .font-playfair,
+  html.lang-ar .font-playfair,
+  html[lang="ar"] .font-cairo,
+  html.lang-ar .font-cairo {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  }
+
+  html[lang="ar"] h1.font-thuluth,
+  html.lang-ar h1.font-thuluth,
+  html[lang="ar"] .font-thuluth,
+  html.lang-ar .font-thuluth,
+  .font-thuluth {
+    font-family: 'DecoType Thuluth', serif !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #050B14;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(212, 175, 55, 0.2);
+    /* New gold */
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(212, 175, 55, 0.5);
+  }
+}
+
+/* Lenis Recommended Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer components {
+
+  /* Ultra-minimal glass card */
+  .glass-card {
+    background: rgba(10, 19, 34, 0.4);
+    /* Darker, more transparent */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(250, 250, 250, 0.05);
+    /* White touch instead of gold for minimal luxury */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    /* Gold touch on hover */
+    background: rgba(10, 19, 34, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+  }
+
+  /* Subtle text glow for gold numbers */
+  .text-glow {
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+  }
+
+  /* Decorative gold line */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  }
+
+  /* Gold bordered button */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-gold/40 text-gold text-xs tracking-[0.2em] uppercase font-medium relative overflow-hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #D4AF37;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+  }
+
+  .btn-gold:hover {
+    @apply text-navy border-gold;
+  }
+
+  .btn-gold:hover::before {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-white/10 text-white/70 text-xs tracking-[0.2em] uppercase font-medium relative overflow-hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-ghost:hover {
+    @apply border-white/30 text-white bg-white/5;
+  }
+}
