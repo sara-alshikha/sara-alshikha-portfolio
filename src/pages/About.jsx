@@ -12,7 +12,7 @@ const About = () => {
   const { language, t } = useLanguage();
   const isArabic = language === 'ar';
   const [cvModalOpen, setCvModalOpen] = React.useState(false);
-  const cvUrl = "https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link";
+  const cvUrl = "https://drive.google.com/file/d/1FzaFLkSQAhzXQwNgDyfT1beWUMaKqiu3/view?usp=drive_link";
 
   return (
     <div dir={isArabic ? 'rtl' : 'ltr'}>

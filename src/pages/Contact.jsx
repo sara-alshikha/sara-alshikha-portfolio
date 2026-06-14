@@ -13,7 +13,7 @@ const Contact = () => {
   const [cvModalOpen, setCvModalOpen] = useState(false);
   const { language, t } = useLanguage();
   const isArabic = language === 'ar';
-  const cvUrl = "https://drive.google.com/file/d/1Al2fv7tRpNN0HA2gZgY_2mvlu84Eu8Mt/view?usp=drive_link";
+  const cvUrl = "https://drive.google.com/file/d/1FzaFLkSQAhzXQwNgDyfT1beWUMaKqiu3/view?usp=drive_link";
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
